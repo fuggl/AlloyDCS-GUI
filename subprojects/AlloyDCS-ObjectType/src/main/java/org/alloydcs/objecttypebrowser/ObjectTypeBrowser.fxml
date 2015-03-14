@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.TreeTableView?>
+
+
+<TreeTableView xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <columns>
+      <TreeTableColumn prefWidth="144.0" text="object type" />
+      <TreeTableColumn prefWidth="103.0" text="n" />
+   </columns>
+</TreeTableView>
