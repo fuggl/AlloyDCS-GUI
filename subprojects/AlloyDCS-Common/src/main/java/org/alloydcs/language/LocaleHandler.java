@@ -46,7 +46,7 @@ public class LocaleHandler {
 		} catch(NullPointerException e) {
 			return "<null key>";
 		} catch(MissingResourceException e) {
-			return "<missing>";
+			return "<missing " + key + ">";
 		}
 	}
 	
