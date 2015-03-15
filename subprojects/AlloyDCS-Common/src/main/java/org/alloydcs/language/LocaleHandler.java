@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.MissingResourceException;
+import java.util.ResourceBundle;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ReadOnlyListProperty;
@@ -18,6 +20,7 @@ public class LocaleHandler {
 	static {
 		DEFAULT = new LocaleHandler();
 	}
+	private ResourceBundle						currentBundle;
 	private final ObjectProperty<Locale>		currentLocale;
 	private final ReadOnlyListWrapper<Locale>	supportedLocales;
 	
@@ -29,8 +32,22 @@ public class LocaleHandler {
 		this.updateSupportedLocales();
 	}
 
+	private ResourceBundle getBundle(String baseName) {
+		return ResourceBundle.getBundle(baseName, this.getCurrentLocale());
+	}
+	
 	public static final LocaleHandler getDefault() {
 		return DEFAULT;
+	}
+	
+	public String getText(String key) {
+		try {
+			return this.currentBundle.getString(key);
+		} catch(NullPointerException e) {
+			return "<null key>";
+		} catch(MissingResourceException e) {
+			return "<missing>";
+		}
 	}
 	
 	public final Locale getCurrentLocale() {
@@ -38,6 +55,8 @@ public class LocaleHandler {
 	}
 	public final void setCurrentLocale(Locale locale) {
 		this.currentLocale.set(locale);
+		final ResourceBundle bundle = this.getBundle("DCS");
+		if(bundle != null) this.currentBundle = bundle;
 	}
 	public ObjectProperty<Locale> currentLocaleProperty() {
 		return this.currentLocale;
@@ -46,12 +65,13 @@ public class LocaleHandler {
 	public void updateSupportedLocales() {
 		final BufferedReader reader = new BufferedReader(
 				new InputStreamReader(
-						this.getClass().getResourceAsStream(
-								"languages/")));
+						this.getClass().getClassLoader().getResourceAsStream(
+								"language/")));
 		try {
 			String					line;
 			String[]				splitLine;
 			final ArrayList<Locale>	locales = new ArrayList<>();
+			locales.add(new Locale("en", "US"));
 			while((line = reader.readLine()) != null) {
 				splitLine = line.split("_");
 				switch(splitLine.length) {
@@ -71,7 +91,7 @@ public class LocaleHandler {
 			if(reader != null) {
 				try {
 					reader.close();
-				} catch (IOException e) {
+				} catch(IOException e) {
 					e.printStackTrace();
 				}
 			}
