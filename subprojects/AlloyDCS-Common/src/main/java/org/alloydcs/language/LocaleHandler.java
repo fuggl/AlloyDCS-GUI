@@ -26,14 +26,27 @@ public class LocaleHandler {
 	
 	public LocaleHandler() {
 		this.currentLocale		= new SimpleObjectProperty<Locale>(
-				this, "currentLocale", Locale.getDefault());
+				this, "currentLocale");
 		this.supportedLocales	= new ReadOnlyListWrapper<Locale>(
 				this, "availableLocales");
 		this.updateSupportedLocales();
+		this.setCurrentLocale(Locale.getDefault());
+	}
+	public LocaleHandler(Locale initialLocale) {
+		this.currentLocale		= new SimpleObjectProperty<Locale>(
+				this, "currentLocale");
+		this.supportedLocales	= new ReadOnlyListWrapper<Locale>(
+				this, "availableLocales");
+		this.updateSupportedLocales();
+		this.setCurrentLocale(initialLocale);
 	}
 
-	private ResourceBundle getBundle(String baseName) {
-		return ResourceBundle.getBundle(baseName, this.getCurrentLocale());
+	private ResourceBundle getBundle(String baseName, Locale locale) {
+		try {
+			return ResourceBundle.getBundle("language/" + baseName, locale);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 	
 	public static final LocaleHandler getDefault() {
@@ -54,9 +67,10 @@ public class LocaleHandler {
 		return this.currentLocale.get();
 	}
 	public final void setCurrentLocale(Locale locale) {
-		this.currentLocale.set(locale);
-		final ResourceBundle bundle = this.getBundle("DCS");
+		if(locale == null) return;
+		final ResourceBundle bundle = this.getBundle("DCS", locale);
 		if(bundle != null) this.currentBundle = bundle;
+		this.currentLocale.set(locale);
 	}
 	public ObjectProperty<Locale> currentLocaleProperty() {
 		return this.currentLocale;
