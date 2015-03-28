@@ -1,12 +1,16 @@
 package org.alloydcs.objecttypebrowser;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import org.alloydcs.objecttype.ObjectType;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 
-public class ObjectTypeBrowserController {
+public class ObjectTypeBrowserController implements Initializable {
 
 	@FXML
 	private TreeTableView<ObjectType> objectTypeTree;
@@ -16,12 +20,15 @@ public class ObjectTypeBrowserController {
 	private TreeTableColumn<ObjectType, Integer> objectAmountColumn;
 	
 	public ObjectTypeBrowserController() {
-		
 	}
 
-    @FXML
-    private void initialize() {
-    	
-    }
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+    	this.objectTypeColumn.	setCellValueFactory(
+    			cellData -> cellData.getValue().getValue().nameProperty());
+    	this.objectAmountColumn.setCellValueFactory(
+    			cellData -> cellData.getValue().getValue().amountProperty().
+    			asObject());
+	}
 	
 }
