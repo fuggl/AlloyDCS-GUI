@@ -4,23 +4,20 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import org.alloydcs.objecttypebrowser.ObjectTypeBrowserController;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+
+import org.alloydcs.objecttypebrowser.ObjectTypeBrowserController;
 
 public class EngineeringSectionController implements Initializable {
 
 	@FXML
-	private BorderPane	objectPane;
+	private GridPane	leftPane;
 	@FXML
-	private GridPane	objectBrowserPane;
-	@FXML
-	private GridPane	objectDataPane;
+	private GridPane	centerPane;
 	
 	public EngineeringSectionController() {
 	}
@@ -33,8 +30,8 @@ public class EngineeringSectionController implements Initializable {
 		loader.setController(new ObjectTypeBrowserController());
 		try {
 			final Node objectTypeBrowser = loader.load();
-			this.objectBrowserPane.add(objectTypeBrowser, 0, 0);
-		} catch (IOException e) {
+			this.leftPane.add(objectTypeBrowser, 0, 0);
+		} catch(IOException e) {
 			e.printStackTrace();
 		}
 	}
