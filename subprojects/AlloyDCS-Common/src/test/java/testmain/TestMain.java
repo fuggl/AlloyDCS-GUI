@@ -12,6 +12,9 @@ public class TestMain {
 //		LocaleHandler.getDefault().supportedLocalesProperty().stream().
 //			forEach(locale -> System.out.println(locale.getDisplayName()));
 		new LocaleHandler(new Locale("en", "GB"));
+		String n = "EngineeringSectionController";
+		//LocaleHandler.class.getSimpleName();
+		System.out.println(n.substring(0, n.length()-10));
 	}
 	
 }
