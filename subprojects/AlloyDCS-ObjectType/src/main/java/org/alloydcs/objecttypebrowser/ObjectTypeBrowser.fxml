@@ -4,9 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.TreeTableView?>
 
-<TreeTableView id="objectTypeTree" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<TreeTableView fx:id="objectTypeTree" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <columns>
-      <TreeTableColumn id="objectTypeColumn" prefWidth="144.0" text="object type" />
-      <TreeTableColumn id="objectAmountColumn" prefWidth="103.0" text="amount" />
+      <TreeTableColumn fx:id="objectTypeColumn" prefWidth="144.0" text="object type" />
+      <TreeTableColumn fx:id="objectAmountColumn" prefWidth="103.0" text="amount" />
    </columns>
 </TreeTableView>

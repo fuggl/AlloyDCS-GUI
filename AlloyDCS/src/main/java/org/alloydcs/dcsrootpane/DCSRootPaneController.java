@@ -1,4 +1,4 @@
-package dcsrootpane;
+package org.alloydcs.dcsrootpane;
 
 import java.io.IOException;
 import java.net.URL;
