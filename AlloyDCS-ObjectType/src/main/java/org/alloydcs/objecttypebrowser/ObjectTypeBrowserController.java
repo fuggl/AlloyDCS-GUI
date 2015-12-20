@@ -28,10 +28,11 @@ public class ObjectTypeBrowserController implements Initializable {
 		this.objectTypeTree.getStylesheets().add(
 				CommonCSS.getHideColumnHeaders());
     	this.objectTypeColumn.	setCellValueFactory(
-    			cellData -> cellData.getValue().getValue().nameProperty());
+    			cellData -> cellData.getValue().getValue().
+    			nameProperty());
     	this.objectAmountColumn.setCellValueFactory(
-    			cellData -> cellData.getValue().getValue().amountProperty().
-    			asObject());
+    			cellData -> cellData.getValue().getValue().
+    			amountInProjectProperty().asObject());
 	}
 	
 }

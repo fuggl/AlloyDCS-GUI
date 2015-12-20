@@ -1,5 +1,7 @@
 package org.alloydcs.objecttype;
 
+import org.alloydcs.locale.LocaleHandler;
+
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -8,11 +10,13 @@ import javafx.beans.property.StringProperty;
 public class ObjectType {
 
 	private final StringProperty	name;
-	private final IntegerProperty	amount;
+	private final IntegerProperty	amountInProject;
 	
 	public ObjectType(String localeName) {
-		this.name	= new SimpleStringProperty(this, "name");
-		this.amount	= new SimpleIntegerProperty(this, "amount");
+		this.name				= new SimpleStringProperty(this, "name");
+		this.amountInProject	= new SimpleIntegerProperty(this, "amount");
+		LocaleHandler localeHandler = LocaleHandler.getDefault();
+//		localeHandler.currentLocaleProperty().
 	}
 	
 	public final String getName() {
@@ -22,11 +26,11 @@ public class ObjectType {
 		return this.name;
 	}
 	
-	public final int getAmount() {
-		return this.amount.get();
+	public final int getAmountInProject() {
+		return this.amountInProject.get();
 	}
-	public IntegerProperty amountProperty() {
-		return this.amount;
+	public IntegerProperty amountInProjectProperty() {
+		return this.amountInProject;
 	}
 	
 }

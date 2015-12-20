@@ -2,7 +2,7 @@ package testmain;
 
 import java.util.Locale;
 
-import org.alloydcs.language.LocaleHandler;
+import org.alloydcs.locale.LocaleHandler;
 
 
 public class TestMain {

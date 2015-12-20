@@ -1,4 +1,4 @@
-package org.alloydcs.language;
+package org.alloydcs.locale;
 
 import java.io.BufferedReader;
 import java.io.IOException;
