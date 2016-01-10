@@ -3,13 +3,12 @@ package org.alloydcs.objecttypebrowser;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import org.alloydcs.css.CommonCSS;
-import org.alloydcs.objecttype.ObjectType;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
+
+import org.alloydcs.objecttype.ObjectType;
 
 public class ObjectTypeBrowserController implements Initializable {
 
@@ -25,8 +24,8 @@ public class ObjectTypeBrowserController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		this.objectTypeTree.getStylesheets().add(
-				CommonCSS.getHideColumnHeaders());
+//		this.objectTypeTree.getStylesheets().add(
+//				CommonCSS.getHideColumnHeaders());
     	this.objectTypeColumn.	setCellValueFactory(
     			cellData -> cellData.getValue().getValue().
     			nameProperty());

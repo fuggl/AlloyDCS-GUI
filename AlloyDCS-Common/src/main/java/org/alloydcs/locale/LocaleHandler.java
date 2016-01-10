@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
@@ -20,7 +21,7 @@ public class LocaleHandler {
 	static {
 		DEFAULT = new LocaleHandler();
 	}
-	private ResourceBundle						currentBundle;
+	private HashMap<String, ResourceBundle>		currentBundle;
 	private final ObjectProperty<Locale>		currentLocale;
 	private final ReadOnlyListWrapper<Locale>	supportedLocales;
 	
@@ -45,6 +46,7 @@ public class LocaleHandler {
 		try {
 			return ResourceBundle.getBundle("language/" + baseName, locale);
 		} catch (Exception e) {
+			//ToDo exception
 			return null;
 		}
 	}
@@ -59,7 +61,7 @@ public class LocaleHandler {
 		} catch(NullPointerException e) {
 			return "<null key>";
 		} catch(MissingResourceException e) {
-			return "<missing " + key + ">";
+			return "<missing: " + key + ">";
 		}
 	}
 	
@@ -68,8 +70,8 @@ public class LocaleHandler {
 	}
 	public final void setCurrentLocale(Locale locale) {
 		if(locale == null) return;
-		final ResourceBundle bundle = this.getBundle("DCS", locale);
-		if(bundle != null) this.currentBundle = bundle;
+//		final ResourceBundle bundle = this.getBundle("DCS", locale);
+//		if(bundle != null) this.currentBundle = bundle;
 		this.currentLocale.set(locale);
 	}
 	public ObjectProperty<Locale> currentLocaleProperty() {
